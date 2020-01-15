@@ -8,6 +8,8 @@ namespace Fietsen.Lib.Entities
 {
     public class Fiets
     {
+        static Random random = new Random();
+
         public Guid Id { get; set; }
 
         public string[] Merken { get; set; } = { "Bamboo", "Novy", "Trek" };
@@ -21,14 +23,22 @@ namespace Fietsen.Lib.Entities
 
         public Fiets() : this("")
         {
-
+            //Snelheid: willekeurig tussen 0 en 40
         }
 
         public Fiets(string make, float speed = 0, int aantalWielen = 2,
             bool metBatterij = false, DateTime? aangekochtOp = null, Guid? id = null)
         {
             Merk = make;
-            Snelheid = speed;
+            if (speed == 0)
+            {
+                Snelheid = random.Next(0, 41);
+            }
+            else
+            {
+                Snelheid = speed;
+
+            }
             AantalWielen = aantalWielen;
             IsElektrisch = metBatterij;
             if (aangekochtOp == null)

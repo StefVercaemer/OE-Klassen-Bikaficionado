@@ -60,6 +60,10 @@ namespace Bikaficionado.Wpf
                 cmbAantalWielen.SelectedItem = geselecteerdeFiets.AantalWielen;
                 txtSnelheid.Text = geselecteerdeFiets.Snelheid.ToString();
             }
+            else
+            {
+                ClearPanel(grdInput);
+            }
         }
 
         private void btnVoegWinkelToe_Click(object sender, RoutedEventArgs e)
@@ -93,14 +97,51 @@ namespace Bikaficionado.Wpf
             int wielen = (int)cmbAantalWielen.SelectedItem;
             bool? aangevinkt = chkElektrisch.IsChecked;
             DateTime? aangekocht = dtpAankoopDatum.SelectedDate;
+            float snelheid = 0;
             try
             {
-                float snelheid = float.Parse(txtSnelheid.Text);
+                snelheid = float.Parse(txtSnelheid.Text);
                 tbkFeedBack.Visibility = Visibility.Hidden;
             }
             catch (Exception)
             {
                 ToonMelding("De input in de snelheid is ongeldig");
+            }
+            try
+            {
+                Guid? id = (lstFietsen.SelectedItem == null) ? 
+                    null : 
+                    (Guid?)((Fiets)lstFietsen.SelectedItem).Id;
+
+                Fiets fiets = new Fiets(merk, snelheid, wielen, (bool)aangevinkt, aangekocht, id);
+                if(huidigeFietsWinkel.SlaOp(fiets))
+                {
+                    tbkFeedBack.Visibility = Visibility.Hidden;
+                    KoppelLstFietsen();
+                    lstFietsen.SelectedIndex = -1;
+                }
+                else
+                {
+                    ToonMelding("De fiets bestaat reeds");
+                }
+            }
+            catch (Exception ex)
+            {
+                ToonMelding(ex.Message);
+            }
+        }
+
+        private void btnNieuw_Click(object sender, RoutedEventArgs e)
+        {
+            lstFietsen.SelectedItem = null;
+        }
+
+        private void btnVerwijder_Click(object sender, RoutedEventArgs e)
+        {
+            if (lstFietsen.SelectedItem != null)
+            {
+                huidigeFietsWinkel.Verwijder((Fiets)lstFietsen.SelectedItem);
+
             }
         }
     }

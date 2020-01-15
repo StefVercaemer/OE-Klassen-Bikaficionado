@@ -31,7 +31,56 @@ namespace Fietsen.Lib.Entities
             };
         }
 
-        bool VoegVeloToe(Fiets toeTeVoegen)
+        public bool SlaOp(Fiets opTeSlaan)
+        {
+            bool isGelukt = true;
+            if (!IsBestaandeFiets(opTeSlaan))
+            {
+                Fietsen.Add(opTeSlaan);
+            }
+            else
+            {
+                int index = GeefIndexVanFiets(opTeSlaan);
+                Fietsen[index] = opTeSlaan;
+            }
+
+            return isGelukt;
+        }
+
+        int GeefIndexVanFiets(Fiets fiets)
+        {
+            int index = -1;
+            for (int i = 0; i < Fietsen.Count; i++)
+            {
+                if (Fietsen[i].Id == fiets.Id)
+                {
+                    index = i;
+                    break;
+                }
+            }
+            return index;
+        }
+
+        bool IsBestaandeFiets(Fiets fiets)
+        {
+            bool bestaat = false;
+            foreach (Fiets velo in Fietsen)
+            {
+                if (velo.Id == fiets.Id)
+                {
+                    bestaat = true;
+                    break;
+                }
+            }
+            return bestaat;
+        }
+
+        public void Verwijder(Fiets teVerwijderen)
+        {
+            Fietsen.Remove(teVerwijderen);
+        }
+
+        public bool VoegVeloToe(Fiets toeTeVoegen)
         {
             bool isGelukt = true;
             foreach (Fiets velo in Fietsen)
