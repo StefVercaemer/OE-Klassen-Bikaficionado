@@ -44,8 +44,10 @@ namespace Bikaficionado.Wpf
             {
                 cmbAantalWielen.Items.Add(i);
             }
-
+            ClearPanel(grdInput);
         }
+
+
 
         private void lstFietsen_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -83,6 +85,23 @@ namespace Bikaficionado.Wpf
         {
             lstFietsen.ItemsSource = huidigeFietsWinkel.Fietsen;
             lstFietsen.Items.Refresh();
+        }
+
+        private void btnSlaOp_Click(object sender, RoutedEventArgs e)
+        {
+            string merk = txtMerk.Text;
+            int wielen = (int)cmbAantalWielen.SelectedItem;
+            bool? aangevinkt = chkElektrisch.IsChecked;
+            DateTime? aangekocht = dtpAankoopDatum.SelectedDate;
+            try
+            {
+                float snelheid = float.Parse(txtSnelheid.Text);
+                tbkFeedBack.Visibility = Visibility.Hidden;
+            }
+            catch (Exception)
+            {
+                ToonMelding("De input in de snelheid is ongeldig");
+            }
         }
     }
 }

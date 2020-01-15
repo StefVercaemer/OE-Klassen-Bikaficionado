@@ -8,6 +8,8 @@ namespace Fietsen.Lib.Entities
 {
     public class Fiets
     {
+        public Guid Id { get; set; }
+
         public string[] Merken { get; set; } = { "Bamboo", "Novy", "Trek" };
 
         public int AantalWielen { get; set; }
@@ -23,7 +25,7 @@ namespace Fietsen.Lib.Entities
         }
 
         public Fiets(string make, float speed = 0, int aantalWielen = 2,
-            bool metBatterij = false, DateTime? aangekochtOp = null)
+            bool metBatterij = false, DateTime? aangekochtOp = null, Guid? id = null)
         {
             Merk = make;
             Snelheid = speed;
@@ -36,6 +38,14 @@ namespace Fietsen.Lib.Entities
             else
             {
                 AankoopDatum = (DateTime)aangekochtOp;
+            }
+            if (id == null)
+            {
+                Id = Guid.NewGuid();
+            }
+            else
+            {
+                Id = (Guid)id;
             }
         }
 
