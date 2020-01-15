@@ -36,17 +36,15 @@ namespace Bikaficionado.Wpf
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            lstFietsen.ItemsSource = huidigeFietsWinkel.Fietsen;
+            KoppelLstFietsen();
             cmbWinkel.ItemsSource = winkels;
             cmbWinkel.SelectedIndex = 0;
-            //lblTitel.Content = $"{fietsWinkel.Naam} ({fietsWinkel.Fietsen.Count})";
-            lblTitel.Content = huidigeFietsWinkel;
-            //in lblTitel: naam van de winkel en aantal fietsen
+                       
             for (int i = 0; i < 5; i++)
             {
                 cmbAantalWielen.Items.Add(i);
             }
-            
+
         }
 
         private void lstFietsen_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -77,9 +75,14 @@ namespace Bikaficionado.Wpf
         private void cmbWinkel_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             huidigeFietsWinkel = (FietsWinkel)cmbWinkel.SelectedItem;
+            KoppelLstFietsen();
+            lstFietsen.SelectedItem = null;
+        }
+
+        private void KoppelLstFietsen()
+        {
             lstFietsen.ItemsSource = huidigeFietsWinkel.Fietsen;
             lstFietsen.Items.Refresh();
-            lstFietsen.SelectedItem = null;
         }
     }
 }
