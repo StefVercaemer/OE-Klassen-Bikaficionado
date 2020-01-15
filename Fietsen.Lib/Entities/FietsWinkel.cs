@@ -8,6 +8,7 @@ namespace Fietsen.Lib.Entities
 {
     public class FietsWinkel
     {
+        
         public string Naam { get; set; }
 
         public List<Fiets> Fietsen { get; set; }

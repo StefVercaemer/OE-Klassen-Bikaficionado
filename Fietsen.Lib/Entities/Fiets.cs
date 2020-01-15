@@ -8,6 +8,8 @@ namespace Fietsen.Lib.Entities
 {
     public class Fiets
     {
+        public string[] Merken { get; set; } = { "Bamboo", "Novy", "Trek" };
+
         public int AantalWielen { get; set; }
 
         public DateTime AankoopDatum { get; set; }
