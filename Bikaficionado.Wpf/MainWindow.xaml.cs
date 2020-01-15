@@ -69,13 +69,24 @@ namespace Bikaficionado.Wpf
         private void btnVoegWinkelToe_Click(object sender, RoutedEventArgs e)
         {
             string fietsWinkelNaam = txtWinkelNaam.Text;
-            FietsWinkel nieuweFietsWinkel = new FietsWinkel(fietsWinkelNaam, false);
-            winkels.Add(nieuweFietsWinkel);
+            try
+            {
+                FietsWinkel nieuweFietsWinkel = new FietsWinkel(fietsWinkelNaam, false);
+                winkels.Add(nieuweFietsWinkel);
 
-            cmbWinkel.Items.Refresh();
-            cmbWinkel.SelectedItem = nieuweFietsWinkel;
+                cmbWinkel.Items.Refresh();
+                cmbWinkel.SelectedItem = nieuweFietsWinkel;
 
-            txtWinkelNaam.Clear();
+                txtWinkelNaam.Clear();
+                ToonMelding("De winkel is aangemaakt", true);
+                txtWinkelNaam.Clear();
+            }
+            catch (Exception ex)
+            {
+
+                ToonMelding(ex.Message);
+            }
+
         }
 
         private void cmbWinkel_SelectionChanged(object sender, SelectionChangedEventArgs e)

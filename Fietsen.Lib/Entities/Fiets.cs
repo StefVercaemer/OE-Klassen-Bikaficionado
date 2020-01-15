@@ -19,7 +19,25 @@ namespace Fietsen.Lib.Entities
         public DateTime AankoopDatum { get; set; }
         public bool IsElektrisch { get; set; }
         public string Merk { get; set; }
-        public float Snelheid { get; set; }
+        private float snelheid;
+
+        public float Snelheid
+        {
+            get { return snelheid; }
+            set
+            {
+                if (value >= 0 && value <= 40)
+                {
+                    snelheid = value;
+
+                }
+                else
+                {
+                    throw new Exception("De snelheid moet tussen 0 en 40 zijn");
+                }
+            }
+        }
+
 
         public Fiets() : this("")
         {

@@ -8,8 +8,25 @@ namespace Fietsen.Lib.Entities
 {
     public class FietsWinkel
     {
-        
-        public string Naam { get; set; }
+
+        private string naam;
+
+        public string Naam
+        {
+            get { return naam; }
+            set
+            {
+                if (value.Trim().Length > 3)
+                {
+                    naam = value; 
+                }
+                else
+                {
+                    throw new Exception("De naam moet minimum 4 karakters lang zijn");
+                }
+            }
+        }
+
 
         public List<Fiets> Fietsen { get; set; }
 
