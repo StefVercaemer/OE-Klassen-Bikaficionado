@@ -7,18 +7,21 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded">
     <Grid>
-        <ListBox x:Name="lstFietsen" HorizontalAlignment="Left" Height="160" Margin="10,32,0,0" VerticalAlignment="Top" Width="150" SelectionChanged="lstFietsen_SelectionChanged"/>
-        <Label x:Name="lblTitel" Content="Label" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Width="150"/>
-        <Label Content="Merk" HorizontalAlignment="Left" Margin="187,32,0,0" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Snelheid" HorizontalAlignment="Left" Margin="187,151,0,0" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Aankoopdatum" HorizontalAlignment="Left" Margin="187,120,0,0" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Electrisch?" HorizontalAlignment="Left" Margin="187,89,0,0" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Aantal wielen" HorizontalAlignment="Left" Margin="187,58,0,0" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="txtMerk" HorizontalAlignment="Left" Height="23" Margin="312,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="txtSnelheid" HorizontalAlignment="Left" Height="23" Margin="312,151,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <ComboBox x:Name="cmbAantalWielen" HorizontalAlignment="Left" Margin="312,62,0,0" VerticalAlignment="Top" Width="120"/>
-        <CheckBox x:Name="chkElektrisch" Content="" HorizontalAlignment="Left" Margin="314,97,0,0" VerticalAlignment="Top"/>
-        <DatePicker x:Name="dtpAankoopDatum" HorizontalAlignment="Left" Margin="314,122,0,0" VerticalAlignment="Top" Width="118"/>
+        <ListBox x:Name="lstFietsen" HorizontalAlignment="Left" Height="160" Margin="10,64,0,0" VerticalAlignment="Top" Width="150" SelectionChanged="lstFietsen_SelectionChanged"/>
+        <Label x:Name="lblTitel" Content="" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Width="150"/>
+        <Label Content="Merk" HorizontalAlignment="Left" Margin="187,64,0,0" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Snelheid" HorizontalAlignment="Left" Margin="187,183,0,0" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Aankoopdatum" HorizontalAlignment="Left" Margin="187,152,0,0" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Electrisch?" HorizontalAlignment="Left" Margin="187,121,0,0" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Aantal wielen" HorizontalAlignment="Left" Margin="187,90,0,0" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="txtMerk" HorizontalAlignment="Left" Height="23" Margin="312,68,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="txtSnelheid" HorizontalAlignment="Left" Height="23" Margin="312,183,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <ComboBox x:Name="cmbAantalWielen" HorizontalAlignment="Left" Margin="312,94,0,0" VerticalAlignment="Top" Width="120"/>
+        <CheckBox x:Name="chkElektrisch" Content="" HorizontalAlignment="Left" Margin="311,129,0,0" VerticalAlignment="Top"/>
+        <DatePicker x:Name="dtpAankoopDatum" HorizontalAlignment="Left" Margin="312,154,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox x:Name="cmbWinkel" HorizontalAlignment="Left" Margin="10,31,0,0" VerticalAlignment="Top" Width="150" SelectionChanged="cmbWinkel_SelectionChanged"/>
+        <TextBox x:Name="txtWinkelNaam" HorizontalAlignment="Left" Height="23" Margin="183,31,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="btnVoegWinkelToe" Content="+" HorizontalAlignment="Left" Margin="312,29,0,0" VerticalAlignment="Top" Width="27" Height="27" Click="btnVoegWinkelToe_Click"/>
 
     </Grid>
 </Window>

@@ -12,7 +12,15 @@ namespace Fietsen.Lib.Entities
 
         public List<Fiets> Fietsen { get; set; }
 
-        public FietsWinkel(string naam)
+        public FietsWinkel(string naam, bool metTestData = true)
+        {
+            if (metTestData) MaakTestData();
+            else Fietsen = new List<Fiets>();
+
+            Naam = naam;
+        }
+
+        void MaakTestData()
         {
             Fietsen = new List<Fiets>
             {
@@ -20,7 +28,6 @@ namespace Fietsen.Lib.Entities
                 new Fiets("Bamboo", 0, 3, true),
                 new Fiets("Orbea", 10)
             };
-            Naam = naam;
         }
 
         public override string ToString()

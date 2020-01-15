@@ -21,18 +21,26 @@ namespace Bikaficionado.Wpf
     /// </summary>
     public partial class MainWindow : Window
     {
+        List<FietsWinkel> winkels;
+        FietsWinkel huidigeFietsWinkel;
 
-        FietsWinkel fietsWinkel = new FietsWinkel("Het velootje");
         public MainWindow()
         {
             InitializeComponent();
+            winkels = new List<FietsWinkel>
+            {
+                new FietsWinkel("Het velootje")
+            };
+            huidigeFietsWinkel = winkels[0];
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            lstFietsen.ItemsSource = fietsWinkel.Fietsen;
+            lstFietsen.ItemsSource = huidigeFietsWinkel.Fietsen;
+            cmbWinkel.ItemsSource = winkels;
+            cmbWinkel.SelectedIndex = 0;
             //lblTitel.Content = $"{fietsWinkel.Naam} ({fietsWinkel.Fietsen.Count})";
-            lblTitel.Content = fietsWinkel;
+            lblTitel.Content = huidigeFietsWinkel;
             //in lblTitel: naam van de winkel en aantal fietsen
             for (int i = 0; i < 5; i++)
             {
@@ -54,6 +62,24 @@ namespace Bikaficionado.Wpf
             }
         }
 
+        private void btnVoegWinkelToe_Click(object sender, RoutedEventArgs e)
+        {
+            string fietsWinkelNaam = txtWinkelNaam.Text;
+            FietsWinkel nieuweFietsWinkel = new FietsWinkel(fietsWinkelNaam, false);
+            winkels.Add(nieuweFietsWinkel);
 
+            cmbWinkel.Items.Refresh();
+            cmbWinkel.SelectedItem = nieuweFietsWinkel;
+
+            txtWinkelNaam.Clear();
+        }
+
+        private void cmbWinkel_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            huidigeFietsWinkel = (FietsWinkel)cmbWinkel.SelectedItem;
+            lstFietsen.ItemsSource = huidigeFietsWinkel.Fietsen;
+            lstFietsen.Items.Refresh();
+            lstFietsen.SelectedItem = null;
+        }
     }
 }
