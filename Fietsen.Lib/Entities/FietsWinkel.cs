@@ -96,32 +96,6 @@ namespace Fietsen.Lib.Entities
             Fietsen.Remove(teVerwijderen);
         }
 
-        public bool VoegVeloToe(Fiets toeTeVoegen)
-        {
-            bool isGelukt = true;
-            foreach (Fiets velo in Fietsen)
-            {
-                if (velo.Id == toeTeVoegen.Id)
-                {
-                    isGelukt = false;
-                    break;
-                }
-            }
-            if (isGelukt) Fietsen.Add(toeTeVoegen);
-
-            return isGelukt;
-        }
-
-        bool VoegFietsToe(Fiets toeTeVoegen)
-        {
-            bool isGelukt = false;
-            if (!Fietsen.Contains(toeTeVoegen))
-            {
-                Fietsen.Add(toeTeVoegen);
-            }
-            return isGelukt;
-        }
-
         public override string ToString()
         {
             return $"{Naam} ({Fietsen.Count})";
