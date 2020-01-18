@@ -19,6 +19,7 @@ namespace Fietsen.Lib.Entities
         public DateTime AankoopDatum { get; set; }
         public bool IsElektrisch { get; set; }
         public string Merk { get; set; }
+
         private float snelheid;
 
         public float Snelheid
@@ -38,7 +39,6 @@ namespace Fietsen.Lib.Entities
             }
         }
 
-
         public Fiets() : this("")
         {
             //Snelheid: willekeurig tussen 0 en 40
@@ -48,33 +48,13 @@ namespace Fietsen.Lib.Entities
             bool metBatterij = false, DateTime? aangekochtOp = null, Guid? id = null)
         {
             Merk = make;
-            if (speed == 0)
-            {
-                Snelheid = random.Next(0, 41);
-            }
-            else
-            {
-                Snelheid = speed;
-
-            }
             AantalWielen = aantalWielen;
             IsElektrisch = metBatterij;
-            if (aangekochtOp == null)
-            {
-                AankoopDatum = DateTime.Now;
-            }
-            else
-            {
-                AankoopDatum = (DateTime)aangekochtOp;
-            }
-            if (id == null)
-            {
-                Id = Guid.NewGuid();
-            }
-            else
-            {
-                Id = (Guid)id;
-            }
+
+            Snelheid = (speed == 0) ? Snelheid = random.Next(0, 41) : speed;
+
+            AankoopDatum = (aangekochtOp == null) ? DateTime.Now : (DateTime)aangekochtOp;
+            Id =  (id == null) ?  Guid.NewGuid() : (Guid)id;
         }
 
         public override string ToString()
