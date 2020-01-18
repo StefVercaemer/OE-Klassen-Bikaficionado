@@ -131,6 +131,7 @@ namespace Bikaficionado.Wpf
                     tbkFeedBack.Visibility = Visibility.Hidden;
                     KoppelLstFietsen();
                     lstFietsen.SelectedIndex = -1;
+                    ClearPanel(grdInput);
                 }
                 else
                 {
