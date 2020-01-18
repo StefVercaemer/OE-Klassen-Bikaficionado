@@ -27,7 +27,6 @@ namespace Fietsen.Lib.Entities
             }
         }
 
-
         public List<Fiets> Fietsen { get; set; }
 
         public FietsWinkel(string naam, bool metTestData = true)

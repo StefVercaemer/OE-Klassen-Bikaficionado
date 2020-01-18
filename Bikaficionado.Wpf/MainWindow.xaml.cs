@@ -23,6 +23,7 @@ namespace Bikaficionado.Wpf
     {
         List<FietsWinkel> winkels;
         FietsWinkel huidigeFietsWinkel;
+        Fiets huidigeFiets;
 
         public MainWindow()
         {
@@ -53,16 +54,17 @@ namespace Bikaficionado.Wpf
         {
             if (lstFietsen.SelectedItem != null)
             {
-                Fiets geselecteerdeFiets = (Fiets)lstFietsen.SelectedItem;
-                txtMerk.Text = geselecteerdeFiets.Merk;
-                dtpAankoopDatum.SelectedDate = geselecteerdeFiets.AankoopDatum;
-                chkElektrisch.IsChecked = geselecteerdeFiets.IsElektrisch;
-                cmbAantalWielen.SelectedItem = geselecteerdeFiets.AantalWielen;
-                txtSnelheid.Text = geselecteerdeFiets.Snelheid.ToString();
+                huidigeFiets = (Fiets)lstFietsen.SelectedItem;
+                txtMerk.Text = huidigeFiets.Merk;
+                dtpAankoopDatum.SelectedDate = huidigeFiets.AankoopDatum;
+                chkElektrisch.IsChecked = huidigeFiets.IsElektrisch;
+                cmbAantalWielen.SelectedItem = huidigeFiets.AantalWielen;
+                txtSnelheid.Text = huidigeFiets.Snelheid.ToString();
             }
             else
             {
                 ClearPanel(grdInput);
+                huidigeFiets = null;
             }
         }
 
@@ -86,7 +88,6 @@ namespace Bikaficionado.Wpf
 
                 ToonMelding(ex.Message);
             }
-
         }
 
         private void cmbWinkel_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -120,9 +121,9 @@ namespace Bikaficionado.Wpf
             }
             try
             {
-                Guid? id = (lstFietsen.SelectedItem == null) ? 
-                    null : 
-                    (Guid?)((Fiets)lstFietsen.SelectedItem).Id;
+                Guid? id = (huidigeFiets == null) ?
+                    null :
+                    (Guid?)huidigeFiets.Id;
 
                 Fiets fiets = new Fiets(merk, snelheid, wielen, (bool)aangevinkt, aangekocht, id);
                 if(huidigeFietsWinkel.SlaOp(fiets))
