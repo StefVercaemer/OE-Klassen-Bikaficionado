@@ -146,6 +146,7 @@ namespace Bikaficionado.Wpf
         private void btnNieuw_Click(object sender, RoutedEventArgs e)
         {
             lstFietsen.SelectedItem = null;
+            txtMerk.Focus();
         }
 
         private void btnVerwijder_Click(object sender, RoutedEventArgs e)
